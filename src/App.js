@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { Admin, Resource, ListGuesser } from 'react-admin';
+import drfProvider, { jwtTokenAuthProvider, fetchJsonWithAuthJWTToken} from 'ra-data-django-rest-framework';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const authProvider = jwtTokenAuthProvider({
+  obtainAuthTokenUrl: 'http://127.0.0.1:8000/api/v1/obtain-token/'
+})
+const dataProvider = drfProvider("http://127.0.0.1:8000/api/v1", fetchJsonWithAuthJWTToken);
+
+const App = () => (
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+      <Resource name="truck" list={ListGuesser} />
+  </Admin>
+);
 
 export default App;
