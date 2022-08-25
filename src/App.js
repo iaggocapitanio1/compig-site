@@ -1,6 +1,14 @@
 import * as React from "react";
-import { Admin, Resource, ListGuesser } from 'react-admin';
+import { Admin, Resource} from 'react-admin';
 import drfProvider, { jwtTokenAuthProvider, fetchJsonWithAuthJWTToken} from 'ra-data-django-rest-framework';
+import { TruckList } from "./components/Trucks";
+import { ProducerList } from "./components/Producers";
+import { LoadingList } from "./components/Loadings";
+import { OperatorList } from "./components/Operators";
+import { TruckDriverList } from "./components/TruckDrivers";
+import { UnityList } from "./components/Unities";
+import { StaffList } from "./components/Staffs";
+import { CompanyList } from "./components/Companies";
 
 const API_URL = 'http://127.0.0.1:8000/api/v1';
 
@@ -9,14 +17,14 @@ const dataProvider = drfProvider(API_URL, fetchJsonWithAuthJWTToken);
 
 const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name="truck" list={ListGuesser} />
-      <Resource name="producer" list={ListGuesser} />
-      <Resource name="operator" list={ListGuesser} />
-      <Resource name="truck-driver" list={ListGuesser} />
-      <Resource name="loading" list={ListGuesser} />
-      <Resource name="unity" list={ListGuesser} />
-      <Resource name="staff" list={ListGuesser} />
-      <Resource name="company" list={ListGuesser} />
+      <Resource name="truck" list={TruckList} />
+      <Resource name="producer" list={ProducerList} />
+      <Resource name="operator" list={OperatorList} />
+      <Resource name="truck-driver" list={TruckDriverList} />
+      <Resource name="loading" list={LoadingList} />
+      <Resource name="unity" list={UnityList} />
+      <Resource name="staff" list={StaffList} />
+      <Resource name="company" list={CompanyList} />
   </Admin>
 );
 
