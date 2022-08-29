@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMediaQuery } from '@mui/material';
+import { recomposeColor, useMediaQuery } from '@mui/material';
 import {  
     List,
     Datagrid,
@@ -10,10 +10,14 @@ import {
     SimpleForm,
     ReferenceInput,
     SelectInput,
-    TextInput,
-    DateInput,
-    DateTimeInput} from 'react-admin';
+    useRecordContext,
+    TextInput} from 'react-admin';
 import UnityField from "./Fields/UnityField";
+
+const TruckDriverTitle = () => {
+    const record = useRecordContext();
+    return <span>Truck Driver:  {record ? `${record.first_name}` + ' ' + `${record.last_name}` : ''}</span>;
+ };
 
 export const TruckDriverList = () => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
@@ -38,7 +42,7 @@ export const TruckDriverList = () => {
 }
 
 export const TruckDriverEdit = () => (
-    <Edit>
+    <Edit title={<TruckDriverTitle/>}>
         <SimpleForm>
             <ReferenceInput  label="Unity" source="unity_id" reference="unity">
                 <SelectInput optionText="user.username" />
@@ -48,4 +52,17 @@ export const TruckDriverEdit = () => (
             <TextInput source="cpf" />
         </SimpleForm>
     </Edit>
+);
+
+export const TruckDriverCreate = props => (
+    <Create {...props}>
+        <SimpleForm>
+        <ReferenceInput label="Unity" source="unity_id" reference="unity">
+            <SelectInput optionText="user.username" />
+        </ReferenceInput>
+        <TextInput source="first_name" />
+            <TextInput source="last_name" />
+            <TextInput source="cpf" />
+        </SimpleForm>
+    </Create>
 );

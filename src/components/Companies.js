@@ -1,11 +1,44 @@
 import * as React from "react";
-import { List, Datagrid, TextField} from 'react-admin';
+import { useMediaQuery } from '@mui/material';
+import {
+    List,
+    Datagrid,
+    TextField,
+    SimpleList,
+    Edit,
+    SimpleForm,
+    ReferenceInput,
+    SelectInput,
+    TextInput} from 'react-admin';
 
-export const CompanyList = () => (
+export const CompanyList = () => {
+
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
+
+    return (
+    
     <List>
-        <Datagrid rowClick="edit">
-        <TextField source="user.id" />
-        <TextField source="cnpj" />
-        </Datagrid>
+        {isSmall ? (
+                <SimpleList
+                    primaryText={ele => ele.user.username}
+                    secondaryText={element => (element.cnpj)}
+                />
+
+            ) : (
+                <Datagrid rowClick="edit">
+                <TextField source="user.username" />
+                <TextField source="cnpj" />
+                </Datagrid>
+            )}
+        
     </List>
+)
+};
+
+export const CompanyEdit = () => (
+    <Edit>
+        <SimpleForm>
+            <TextInput source="cnpj" label="CNPJ"/>
+        </SimpleForm>
+    </Edit>
 );

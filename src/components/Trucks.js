@@ -6,16 +6,19 @@ import {
     TextField,
     SimpleList,
     Edit,
-    Create,
     SimpleForm,
     ReferenceInput,
     SelectInput,
-    TextInput,
-    DateTimeInput
+    useRecordContext,
+    Create,
+    TextInput
 } from 'react-admin';
 import UnityField from "./Fields/UnityField";
 
-
+const TruckTitle = () => {
+    const record = useRecordContext();
+    return <span>Truck:  {record ? `${record.license_plate}` : ''}</span>;
+};
 export const TruckList = () => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
 
@@ -37,12 +40,23 @@ export const TruckList = () => {
 };
 
 export const TruckEdit = () => (
-    <Edit>
+    <Edit title={<TruckTitle />}>
         <SimpleForm>
-            <ReferenceInput  label="Unity" source="unity_id" reference="unity">
+            <ReferenceInput label="Unity" source="unity_id" reference="unity">
                 <SelectInput optionText="user.username" />
             </ReferenceInput>
             <TextInput source="license_plate" />
         </SimpleForm>
     </Edit>
+);
+
+export const TruckCreate = props => (
+    <Create {...props}>
+        <SimpleForm>
+        <ReferenceInput label="Unity" source="unity_id" reference="unity">
+            <SelectInput optionText="user.username" />
+        </ReferenceInput>
+            <TextInput multiline source="license_plate" />
+        </SimpleForm>
+    </Create>
 );

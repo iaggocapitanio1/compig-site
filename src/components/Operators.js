@@ -1,12 +1,73 @@
 import * as React from "react";
-import { List, Datagrid, TextField} from 'react-admin';
+import { useMediaQuery } from '@mui/material';
+import {
+    List,
+    Datagrid,
+    TextField,
+    SimpleList,
+    Edit,
+    SimpleForm,
+    ReferenceInput,
+    SelectInput,
+    useRecordContext,
+    Create,
+    TextInput,
+} from 'react-admin';
 import UnityField from "./Fields/UnityField";
-export const OperatorList = () => (
-    <List>
-        <Datagrid rowClick="edit">
-        <UnityField source="unity_id" />
-        <TextField source="first_name" />
-        <TextField source="cpf" />
-        </Datagrid>
-    </List>
+
+const OperatorTitle = () => {
+    const record = useRecordContext();
+    return <span>Operator:  {record ? `${record.first_name}` +' ' + `${record.last_name}` : ''}</span>;
+ };
+
+
+export const OperatorList = () => {
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
+
+    return (
+        <List>
+             {isSmall ? (
+                <SimpleList
+                    primaryText={ele => ele.first_name}
+                    secondaryText={element => (<UnityField label="Unity" source="unity_id" />)}
+                />
+
+            ) : (
+                <Datagrid rowClick="edit">
+                <UnityField source="unity_id" />
+                <TextField source="first_name" />
+                <TextField source="cpf" />
+                </Datagrid>
+            )}
+         
+        </List>
+    )
+};
+
+export const OperatorEdit = () => (
+    <Edit title={<OperatorTitle/>}>
+        <SimpleForm>
+            <ReferenceInput  label="Unity" source="unity_id" reference="unity">
+                <SelectInput optionText="user.username" />
+            </ReferenceInput>
+            <TextInput source="first_name" />
+            <TextInput source="last_name" />
+            <TextInput source="cpf" />
+        </SimpleForm>
+    </Edit>
+);
+
+
+
+export const OperatorCreate = props => (
+    <Create {...props}>
+        <SimpleForm>
+            <ReferenceInput label="Unity" source="unity_id" reference="unity">
+                <SelectInput optionText="user.username" />
+            </ReferenceInput>
+            <TextInput source="first_name" label="First Name"/>
+            <TextInput source="last_name"  label="Last Name"/>
+            <TextInput source="cpf"  label="CPF"/>
+        </SimpleForm>
+    </Create>
 );

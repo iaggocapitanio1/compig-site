@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useRecordContext, useGetOne, Loading, Error} from 'react-admin';
+import { useRecordContext, useGetOne, Loading, Error } from 'react-admin';
 
-const UnityField = ({ source }) => {
+const CompanyField = ({ source }) => {
     const record = useRecordContext();
-    const { data, isLoading, error } = useGetOne('unity', {id:record[source]});
+    const { data, isLoading, error } = useGetOne('company', {id:record[source]});
     if (isLoading) { return <Loading />; }
     if (error) { return <Error/>; }
     return record ? (
@@ -13,4 +13,5 @@ const UnityField = ({ source }) => {
     ) : null;
 }
 
-export default UnityField;
+export default CompanyField;
+
