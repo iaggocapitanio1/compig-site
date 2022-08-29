@@ -1,10 +1,11 @@
 import * as React from "react";
-import { List, Datagrid, TextField, EmailField } from 'react-admin';
+import { List, Datagrid, TextField} from 'react-admin';
+import UnityField from "./Fields/UnityField";
 
 export const ProducerList = () => (
     <List>
         <Datagrid rowClick="edit">
-            <TextField source="unity" />
+            <UnityField source="unity_id" />
             <TextField source="name" />
             <TextField source="grange" />
             <TextField source="cpf_cnpj" />

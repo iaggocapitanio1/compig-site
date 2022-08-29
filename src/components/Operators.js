@@ -1,10 +1,10 @@
 import * as React from "react";
-import { List, Datagrid, TextField, EmailField } from 'react-admin';
-
+import { List, Datagrid, TextField} from 'react-admin';
+import UnityField from "./Fields/UnityField";
 export const OperatorList = () => (
     <List>
         <Datagrid rowClick="edit">
-        <TextField source="unity" />
+        <UnityField source="unity_id" />
         <TextField source="first_name" />
         <TextField source="cpf" />
         </Datagrid>
