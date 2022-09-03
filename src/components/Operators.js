@@ -34,9 +34,9 @@ export const OperatorList = () => {
 
             ) : (
                 <Datagrid rowClick="edit">
-                <UnityField source="unity_id" />
-                <TextField source="first_name" />
-                <TextField source="cpf" />
+                <UnityField source="unity_id" label="First Name"/>
+                <TextField source="first_name" label="Last Name"/>
+                <TextField source="cpf" label="CPF"/>
                 </Datagrid>
             )}
          
@@ -50,9 +50,9 @@ export const OperatorEdit = () => (
             <ReferenceInput  label="Unity" source="unity_id" reference="unity">
                 <SelectInput optionText="user.username" />
             </ReferenceInput>
-            <TextInput source="first_name" />
-            <TextInput source="last_name" />
-            <TextInput source="cpf" />
+            <TextInput source="first_name" label="First Name"/>
+            <TextInput source="last_name" label="Last Name"/>
+            <TextInput source="cpf" label="CPF" />
         </SimpleForm>
     </Edit>
 );
