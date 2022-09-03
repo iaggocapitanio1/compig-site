@@ -17,7 +17,7 @@ import UnityField from "./Fields/UnityField";
 
 const OperatorTitle = () => {
     const record = useRecordContext();
-    return <span>Operator:  {record ? `${record.first_name}` +' ' + `${record.last_name}` : ''}</span>;
+    return <span> Operator:  {record ? `${record.first_name}` +' ' + `${record.last_name}` : ''}</span>;
  };
 
 

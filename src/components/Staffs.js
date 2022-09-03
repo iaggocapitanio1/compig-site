@@ -4,7 +4,6 @@ import {
     Datagrid,
     TextField,
     Edit,
-    EmailField,
     PasswordInput,
     SimpleForm,
     ReferenceInput,

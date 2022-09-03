@@ -7,8 +7,6 @@ import {
     SimpleList,
     Edit,
     SimpleForm,
-    ReferenceInput,
-    SelectInput,
     TextInput} from 'react-admin';
 
 export const CompanyList = () => {
