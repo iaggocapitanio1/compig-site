@@ -18,7 +18,7 @@ import {TbSteeringWheel} from "react-icons/tb";
 import Dashboard from "./components/Dashboard";
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import theme from "./style/Theme";
-const API_URL = 'http://compig-server.herokuapp.com/api/v1';
+const API_URL = 'https://compig-server.herokuapp.com/api/v1';
 //"http://127.0.0.1:8000/api/v1"
 const authProvider = jwtTokenAuthProvider({ obtainAuthTokenUrl: API_URL + '/obtain-token/'});
 const dataProvider = drfProvider(API_URL, fetchJsonWithAuthJWTToken);
