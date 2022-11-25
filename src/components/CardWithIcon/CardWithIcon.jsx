@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom';
 import cartouche from './cartouche.png';
 import cartoucheDark from './cartoucheDark.png';
 
-function CardWithIcon({ icon, to, title, subtitle, children }) {
+function CardWithIcon({ icon, to, title, subtitle, children, iconKlass }) {
     return (
         <Card
             sx={{
@@ -22,7 +22,7 @@ function CardWithIcon({ icon, to, title, subtitle, children }) {
                 <Box
                     sx={{
                         overflow: 'inherit',
-                        padding: '16px',
+                        padding: '1rem',
                         background: theme =>
                             `url(${theme.palette.mode === 'dark'
                                 ? cartoucheDark
@@ -39,13 +39,13 @@ function CardWithIcon({ icon, to, title, subtitle, children }) {
                         },
                     }}
                 >
-                    <Box width="3em" className="icon">
-                        {createElement(icon, { fontSize: 'large' })}
+                    <Box width="3em" className={"icon"}>
+                        {createElement(icon, { fontSize: 'large', className: `${iconKlass?iconKlass:''}`})}
                     </Box>
                     <Box textAlign="right">
                         <Typography color="textSecondary">{title}</Typography>
                         <Typography variant="h5" component="h2">
-                            {subtitle || ' '}
+                            {subtitle  }
                         </Typography>
                     </Box>
                 </Box>
